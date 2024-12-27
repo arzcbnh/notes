@@ -1,0 +1,141 @@
+@font-face {
+    font-display: fallback;
+    font-family: "DejaVu Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("assets/fonts/DejaVuSans.ttf") format("truetype");
+}
+
+:root {
+    font-family: "DejaVu Sans";
+
+    --transition-time: 0.4s;
+
+    /* Colors */
+    --lightblue: #9691d3;
+    --darkblue: #282359;
+    --lightgray: #9693a7;
+    --darkgray: #201d38;
+
+    /* Gradients */
+    --convex-gradient: radial-gradient(ellipse 60% 200% at 20% 210%, var(--darkblue), transparent),
+        radial-gradient(ellipse 60% 200% at 80% -110%, var(--lightblue), transparent),
+        linear-gradient(to bottom right, var(--lightblue), var(--darkblue) 70%);
+    --concave-gradient: radial-gradient(ellipse 60% 200% at 20% 210%, var(--lightblue), transparent),
+        radial-gradient(ellipse 60% 200% at 80% -110%, var(--darkblue), transparent),
+        linear-gradient(to top left, var(--lightblue), var(--darkblue) 70%);
+    --brushed-gradient: conic-gradient(from 45deg, white, var(--darkgray), white, var(--lightgray), white);
+    --knob-hole-gradient: linear-gradient(135deg, var(--darkblue) 30%, var(--lightblue) 90%);
+}
+
+body {
+    background: #57809e;
+}
+
+.topBar {
+    padding: 0.5rem 1rem 0 1rem;
+    justify-content: flex-start;
+    font-weight: lighter;
+    color: #7aa2bf;
+    user-select: none;
+
+    &::before {
+        content: "";
+        width: 3em;
+        height: 3em;
+        margin-right: 0.5em;
+        background: currentColor;
+        mask: url("assets/misc/java-currentColor.svg") no-repeat 50% 50%;
+        mask-size: cover;
+    }
+}
+
+.bottomBar {
+    padding: 0.5em;
+    background: #e6e6e6;
+    color: black;
+    font-weight: lighter;
+}
+
+.accordion {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.accordion,
+.accordion * {
+    transition: height var(--transition-time) ease-in-out;
+}
+
+.accordion_head {
+    background: var(--convex-gradient);
+    gap: 0.5rem;
+
+    /* This pseudo-element is used to centralize the title */
+    &::before {
+        /* Same width as the dropdown icon */
+        width: 1.7rem;
+        display: block;
+        content: "";
+    }
+}
+
+.accordion_title {
+    border: solid 1px #534d8b;
+    border-radius: 100vw;
+    background: transparent;
+    background-clip: border-box;
+    background-origin: border-box;
+
+    color: #ddd;
+    text-align: center;
+    font-weight: normal;
+
+    flex: 1;
+}
+
+.accordion_icon {
+    color: #ada7d7;
+
+    width: 1.7rem;
+    padding: 0.3rem;
+    border: solid 2px currentColor;
+    border-radius: 100vw;
+
+    background: transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.accordion_body {
+    background: white;
+    border-image: url("assets/misc/solaris-window-border.png") 21;
+    border-image-width: 0 21px 21px 21px;
+    border-image-repeat: repeat;
+}
+
+.accordion_bodyWrapper {
+    height: 0;
+}
+
+.accordion_body {
+    padding: 1rem;
+}
+
+.accordion.-toggled {
+    .accordion_title {
+        background-image: var(--concave-gradient);
+        border-color: transparent;
+        text-shadow: 2px 2px 2px #222;
+        color: white;
+    }
+
+    .accordion_icon {
+        background-image: var(--brushed-gradient), var(--knob-hole-gradient);
+        border-color: transparent;
+        color: black;
+
+        svg {
+            transform: rotate(45deg);
+        }
+    }
+}
