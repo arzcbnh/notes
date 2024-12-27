@@ -1,0 +1,11 @@
+---
+interface Props {
+    name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<a class="anchor" href={name}>
+    <img class="anchor_logo" src={`assets/logos/${name}.svg`} />
+</a>

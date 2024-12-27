@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry, ContentEntryMap } from "astro:content";
+import Category from "./Category.astro";
+
+interface Props {
+    entries: CollectionEntry<keyof ContentEntryMap>[];
+    style: string;
+}
+
+function filter(entries: CollectionEntry<keyof ContentEntryMap>[], category: string) {
+    return entries.filter(entry => entry.data.category === category);
+}
+
+const { entries, style } = Astro.props;
+const stdlib = filter(entries, "stdlib");
+const core = filter(entries, "core");
+const misc = filter(entries, "misc");
+---
+
+<div class="sheet">
+    {core.length > 0 ? <Category style={style} entries={core} title="" /> : null}
+    {stdlib.length > 0 ? <Category style={style} entries={stdlib} title="Standard Library" /> : null}
+    {misc.length > 0 ? <Category style={style} entries={misc} title="Miscellaneous" /> : null}
+</div>
