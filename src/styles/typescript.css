@@ -1,0 +1,77 @@
+@font-face {
+    font-display: fallback;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("assets/fonts/noto-sans-v37-latin-regular.woff2") format("woff2");
+}
+
+:root {
+    --blue: #3178c6;
+    --secondary-color: #235a97;
+    --div-color: #262626;
+    --offwhite: #faf9f8;
+    --gray: #333;
+    --transition-time: 0.4s;
+
+    font-family: "Noto Sans";
+}
+
+body {
+    background: var(--offwhite);
+}
+
+.topBar,
+.bottomBar {
+    padding: 0.5em;
+    background: var(--blue);
+    color: white;
+}
+
+.accordion {
+    /* Copied this box-shadow directly from the website */
+    box-shadow:
+        rgba(0, 0, 0, 0.132) 0px 1.6px 3.6px 0px,
+        rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
+}
+
+.accordion,
+.accordion * {
+    transition: all var(--transition-time) ease-in-out;
+}
+
+.accordion_head {
+    background: white;
+    color: var(--gray);
+
+    &:hover > * {
+        filter: brightness(150%);
+    }
+}
+
+.accordion_body {
+    background: white;
+    border-radius: 0;
+    color: var(--gray);
+}
+
+.accordion_bodyWrapper {
+    height: 0;
+}
+
+.accordion_body {
+    padding: 1rem;
+}
+
+.accordion.-toggled {
+    border-color: var(--blue);
+
+    .accordion_head {
+        background: var(--blue);
+        color: white;
+    }
+
+    .accordion_icon {
+        rotate: 180deg;
+    }
+}

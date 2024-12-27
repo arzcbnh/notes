@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "layouts/BaseLayout.astro";
+import Sheet from "components/Sheet.astro";
+import "styles/default.css";
+
+const entries = await getCollection("example");
+---
+
+<BaseLayout title="Example">
+    <Sheet style="default" entries={entries} />
+</BaseLayout>
