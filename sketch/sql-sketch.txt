@@ -1,0 +1,45 @@
+C => INSERT
+R => SELECT
+U => UPDATE
+D => DELETE
+
+* => all columns
+
+SELECT * FROM <table_name>; => returns lines
+SELECT (<column_name1>, <column_name2>) from <table_name>; => returns tuples
+SELECT * FROM <table_name> WHERE <column> = <value>;
+                                 purchases > 2;
+                                 id <> 10;
+SELECT * from <table_name> LIMIT <number>;
+SELECT * from <table_name> ORDER BY <column_name> [ASC]; => ascending
+SELECT * from <table_name> ORDER BY <column_name> DESC; => descending
+
+INSERT INTO <table> (<column1, column2, ...) VALUES (value1, value2, ...);
+INSERT INTO <table> <column_tuple> VALUES <value_tuple1>, <value_tuple2>, ...;
+
+UPDATE <table> SET <column1> = <value1> WHERE <column2> = <value2>;
+
+DELETE FROM <table> WHERE <column> = <value>;
+
+SELECT * FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+SELECT table1.*, table2.<column> FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+SELECT table1.*, table2.<column> AS <name> FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+
+SELECT table1.*, table2.*, table3.*, ...
+    FROM table1
+    JOIN table2
+        ON table1.column = table2.column
+    JOIN table3
+        ON table2.column = table3.column
+    ...;
+
+SELECT AVG(column) FROM table;
+MIN()
+MAX()
+SUM()
+COUNT()
+
+GROUP BY
+
+A ordem dos comandos precisa ser
+SELECT ⇒ FROM ⇒  JOIN ⇒ WHERE ⇒ GROUP BY ⇒ ORDER BY ⇒ LIMIT ⇒ OFFSET

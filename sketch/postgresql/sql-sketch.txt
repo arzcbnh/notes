@@ -1,0 +1,27 @@
+other ops:
+limit
+order by
+sort by
+
+SELECT * FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+SELECT table1.*, table2.<column> FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+SELECT table1.*, table2.<column> AS <name> FROM <table1> JOIN <table2> ON table1.<column> = table2.<column>;
+
+SELECT table1.*, table2.*, table3.*, ...
+    FROM table1
+    JOIN table2
+        ON table1.column = table2.column
+    JOIN table3
+        ON table2.column = table3.column
+    ...;
+
+SELECT AVG(column) FROM table;
+MIN()
+MAX()
+SUM()
+COUNT()
+
+GROUP BY
+
+A ordem dos comandos precisa ser
+SELECT ⇒ FROM ⇒  JOIN ⇒ WHERE ⇒ GROUP BY ⇒ ORDER BY ⇒ LIMIT ⇒ OFFSET

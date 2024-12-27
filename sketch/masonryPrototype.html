@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .item {
+                transition: width 0.3s ease-in-out;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="item_container">
+                <div onclick="toggle(this)" class="item" style="background: red; width: 500px; height: 500px"></div>
+            </div>
+            <div class="item_container">
+                <div onclick="toggle(this)" class="item" style="background: blue; width: 500px; height: 500px"></div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+        <script>
+            const container = document.querySelector(".container");
+            const masonry = new Masonry(container, {
+                itemSelector: ".item_container",
+                stagger: 0,
+            });
+
+            function toggle(element) {
+                const goal = element.style.width == "100px" ? "500px" : "100px";
+                element.parentElement.style.width = goal;
+                element.style.width = goal;
+
+                // console.log(masonry.getItemElements()[0].clientWidth);
+                //setTimeout(() => console.log(masonry.getItemElements()[1].style.left), 450);
+                // console.log(element)
+                //setTimeout(() => masonry.layout(), 300);
+                masonry.layout();
+            }
+        </script>
+    </body>
+</html>

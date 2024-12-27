@@ -1,0 +1,111 @@
+--------------------------------------------------------------------------------
+JSX
+- Always declare a single root element.
+- Always close void tags explicitly.
+- The class attribute is actually className, to prevent conflict with the JavaScript keyword.
+- camelCase all attributes, except for aria and...
+- Expressions can only be used inside an element body or right after the equal sign of an attribute.
+- Arrays of elements are rendered as a sequence of elements.
+
+React components are JavaScript functions that return markup:
+// Declaration and definition
+function MyButton() {
+  return <button>I'm a button</button>;
+}
+
+// Usage
+const element = (
+    <div>
+        <MyButton />
+    </div>
+);
+
+Expressions evaluate JavaScript code and are defined inside curly braces. Notice the expression in the attribute evaluating to an object.
+const greet = (
+    <h1 style={{color = "red"}}>
+        Hello, {user.name}!
+    </h1>
+);
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PROPS
+Attributes are passed inside an object to the component, as long as it's been declared. An attribute's value may only be a string literal (not template) or an expression.
+function Info({name}) {
+    return <h1>Information about {name}.</h1>
+}
+
+props.children e outros nomes reservados
+
+const element = <Info name="Matt" />;
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HOOKS
+Hooks are functions that let you access React features inside components. They're caracterized by beginning with "use".
+useState | 
+useEffect
+useRef
+useReducer
+useContext
+useMemo
+useCallback
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+STATE
+A state is a components memory. A value is only updated after it's been rendered again.
+// Obtain a reference to a state's value and its update function.
+const [value, setValue] = useState(initialValue);
+// Use a state's value.
+const element = <p>{value}</p>;
+// Update a state's value.
+setValue(value + 1);
+--------------------------------------------------------------------------------
+
+
+fragment
+key
+event handling onclick onchange onsubmit
+ref
+context
+portals
+suspense
+error boudaries
+class based components
+import css and srcs
+
+react-router
+styled-components ?
+
+
+--------------------------------------------------------------------------------
+CONTEXT
+References: https://react.dev/learn/passing-data-deeply-with-context, https://react.dev/reference/react/createContext, https://react.dev/reference/react/useContext
+A Context is a mechanism that allows you to share data among deeply nested components, without having to explicitly pass props through every component of the tree.
+
+1. Create a context. A context object holds a Provider and Consumer component. They are usually kept at a separate contexts folder because they need to be imported by different components.
+import { createContext } from 'react';
+export const SomeContext = createContext(defaultValue);
+
+2. Provide the context. Wrap all components that require the contextual data in a Provider.
+import { SomeContext } from './SomeContext.js';
+// ...
+
+export default function OuterComponent() {
+    return (
+        <SomeContext.Provider value={someValue}>
+            <InnerComponent />
+        </SomeContext.Provider>
+    );
+}
+
+3. Consume the context. The value previously defined in the Provider will be accessible through the hook useContext.
+import { useContext } from 'react';
+import { SomeContext } from './SomeContext.js';
+
+export default function InnerComponent() {
+    const value = useContext(SomeContext);
+    // ...
+}
+--------------------------------------------------------------------------------

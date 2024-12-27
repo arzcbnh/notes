@@ -1,0 +1,47 @@
+title and/or subtitle
+description and/or topics
+code demonstration
+
+type coercion and conversion
+variable destructuring
+truthy and falsy
+switch case
+relevant loops (for in, for of)
+functions and fat arrows
+classes
+try catch finally and Error
+regex
+promises
+async/await
+setinterval settimeout
+inheritance and the prototype chain
+modules and imports
+event loop
+browser-side apis
+prompt, alert
+dom manip: document, querySelector, classList
+localstorage
+labels
+
+
+DESTRUCTURING ASSIGNMENT
+    * Destructuring assignment: WRONG unpacks values from arrays and objects into different variables when used in a variable declaration.
+    const { nome: nomeFulano, idade } = pessoa;
+    copy objects and arrays
+console.log(nomeFulano) //Fulano
+const pessoa = {
+	nome: 'Fulano',
+	parentes: ['Ciclano', 'Beltrano']
+};
+const { nome, parentes: [parente1, parente2] } = pessoa;
+
+type coercion and conversion
+relevant loops (for in, for of)
+classes
+Error extension
+regex
+
+event loop
+browser-side apis
+dom manip: document, querySelector, classList
+localstorage

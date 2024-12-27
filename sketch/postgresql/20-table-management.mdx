@@ -1,0 +1,29 @@
+---
+title: Table management
+---
+
+### Creating a new table
+
+```sql
+CREATE TABLE <name> (
+    <column1> <properties>,
+    <column2> <properties>,
+    ...
+);
+
+CREATE TABLE weather (
+    city             varchar(80),
+    temperature      int,
+    precipitation    real,
+    date             date
+);
+```
+
+### Adding columns to a table
+
+### Dropping a table
+
+```sql
+DROP TABLE <name>;
+DROP TABLE weather;
+```

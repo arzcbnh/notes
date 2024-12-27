@@ -1,0 +1,99 @@
+---
+title: Relevant operators and keywords
+---
+
+### `this` keyword
+
+-   Global scope: refers to the `window` object.
+-   Regular function: refers to the `window` object, or is undefined in strict mode.
+-   Object method: refers to the object that the method belongs to.
+-   Constructor function: refers to the new object being created.
+-   Arrow function: refers permanently to the same value as this in the scope that arrow function is defined.
+
+### Optional chaining `?.`
+
+Used to safely access an object's property or method. If the property or method is null or undefined, the expression short circuits to undefined. _Cannot_ be used on the beginning or the end of the chain.
+
+```js
+const obj = { subobj: { prop: "text" } };
+
+obj.subobj?.prop; // -> "text"
+obj.otherobj?.prop; // -> undefined
+obj?.prop; // -> Error
+```
+
+### Nullish coalescing operator `??`
+
+Returns its right-hand side operand when its left-hand side operand is null or undefined.
+
+```js
+0 || 1; // -> 1
+0 ?? 1; // -> 0
+null ?? 1; // -> 1
+```
+
+### `typeof`
+
+Returns a string with the type of its operand.
+
+```js
+typeof 25;       // -> "number"
+typeof "text";   // -> "string"
+typeof {};       // -> "object"
+typeof () => {}; // -> "function"
+```
+
+### `delete`
+
+Remove a property from an object. Setting the property to undefined does not remove it.
+
+```js
+const obj = { prop: "text" };
+delete obj.prop;
+obj.prop; // -> undefined
+```
+
+### `instanceof`
+
+Returns a boolean indicating if the prototype of a constructor is in the prototype chain of an object.
+
+```js
+const div = document.querySelector("div");
+div instanceof HTMLElement; // -> true
+div instanceof EventTarget; // -> true
+div instanceof RegExp; // -> false
+```
+
+### Spread operator `...`
+
+Expands string characters, array items, and object properties in place, as if they were separated by commas. _Not_ to be confused with destructuring assignment and variadic function declaration.
+
+```js
+const spreadString = [..."123"]; // -> ["1", "2", "3"]
+const spreadArray = [...spreadString, 10, 20]; // -> ["1", "2", "3", 10, 20]
+const obj = { prop: 10, otherProp: 20 };
+const spreadObj = { ...obj, extra: 30 }; // -> { prop: 10, otherProp: 20, extra: 30 }
+Math.max(...spreadArray); // -> 20
+```
+
+### `in`
+
+Returns a boolean indicating if an object has a specified property in itself or in its prototype chain.
+
+```js
+const obj = { a: 10 };
+a in obj; // -> true
+b in obj; // -> false
+```
+
+### `void`
+
+Evaluates an expression but returns undefined regardless of its result.
+
+```js
+void (2 + 2); // -> undefined
+void doSideEffect();
+void (function () {
+    /* ... */
+})(); // -> IIFE example
+```

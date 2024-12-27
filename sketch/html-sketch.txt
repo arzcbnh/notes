@@ -1,0 +1,133 @@
+
+Element declaration syntax:
+<tag attribute1 attribute2="value">Textual content</tag>
+The entire declaration is considered the element.
+
+SPECIAL TAGS
+<!DOCTYPE html> | Declare the version of HTML the document is written in. "html" stands for HTML5, AKA the HTML Living Standard.
+<html> | The root element, of which every element will be a descendant of.
+    - lang attribute: specifies the language of an element in the RFC 5646 format.
+<head> | Holds metadata, information about and properties of the page itself.
+<body> | Holds the content of the page, such as text and media.
+<!-- --> | Comment, not rendered.
+
+Document structure syntax:
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+    </body>
+</html>
+
+SUBTITLES
+/ void element: has no body nor closing tag.
+** inline by default
+
+METADATA ELEMENTS
+<title> | Contains the title of a document, usually displayed in the browser tab.
+<link rel="icon" type="img/png" href="/fav.ico" /> | Declares a relationship between the document and an external resource.
+<style> | Embeds CSS within the document or SVG element.
+<script href="/main.js" /> | Links or embeds JavaScript within the document.
+<script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> | Represents many different types of metadata depending on its attributes.
+<meta charset="utf-8" />
+
+FORMATTING ELEMENTS
+
+TEXTUAL ELEMENTS
+<h1> to <h6> | Headings. Pages should only have a single <h1> and every header should be leveled hierarchically.
+<p> | Paragraph.
+<b> **
+<strong> ** | Both make text bold, but <strong> is relevant semantically.
+<i> **
+<em> ** | Both make text italic, but <em> is relevant semantically.
+
+MEDIA ELEMENTS
+<a href="/about.html" target="_blank"> ** | Anchor. Links to another document.
+<img src="/img.png" alt="A picture." /> | Image.
+<video>
+
+STRUCTURAL ELEMENTS
+<div>
+<span> ** | Generic elements, respectivelly blocked and inlined, that may contain anything.
+<ol>
+<ul> | Ordered and unordered lists, respectivelly.
+<li> | List item.
+
+TABLE ELEMENTS
+<table> | Table.
+<tr> | Table row.
+<th> | Table header.
+<td> | Table cell.
+<col> and <colgroup> | 
+colspan, rowspan
+<caption>
+thead, tbody, tfoot
+scope attribute
+
+FORMS
+<form>
+action, method
+<input/>
+type, id, placeholder, name, required, minlength, maxlength, min, max, pattern
+<label>
+for
+<textarea>
+<select>
+name
+<option>
+value, selected
+<optgroup>
+label
+<button>
+type
+<fieldset>
+<legend>
+
+
+hgroup
+html entities
+
+style attribute and other globals
+onclick
+
+emmet
+! - default syntactial structure abbreviation
+!!! - doctype tag
+
+details, summary
+iframe
+
+SEMANTIC ELEMENTS
+    <article>
+    <aside>
+    <details>
+    <figcaption>
+    <figure>
+    <footer>
+    <form>
+    <header>
+    <main>
+    <mark>
+    <nav>
+    <section>
+    <summary>
+    <time>
+
+wai-aria roles
+
+
+
+----------- THE REAL THING
+CONCEPTS
+element | Objects that compose a document.
+tags | Declaration of the position, beginning and/or end of elements.
+attribute | Property of an element.
+entity | Escape code for a character used in the markup.
+*diagram*
+
+SPECIAL TAGS
+<!DOCTYPE html> | Declare the version of HTML the document is written in. "html" stands for HTML5, AKA the HTML Living Standard.
+<!-- --> | Comment, not rendered.

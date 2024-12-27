@@ -1,0 +1,10 @@
+---
+title: Relevant types
+---
+
+-   **Number**: Besides common integer and floats, there's also the values `Infinity`, `-Infinity`, and `NaN` (not a number).
+-   **String**: A string declared between backticks allow for insertion of evaluated expressions in the string (e.g. `` `My name is ${name}` ``)
+-   **`null` and `undefined`**: While `null` represents the absence of a value and only appears when set by a script, `undefined` represents an uninitialized variable and should never be set by a script. Since both are falsy, `null == undefined` evaluates to true.
+-   **Array**: It is not a primitive type, but rather an object that has its numeric properties set.
+-   **Symbol**: A primitive type that can be used for unique property keys in objects.
+-   **BigInt**: A primitive type that may hold values greather than what is possible with the Number type. In general, a BigInt value cannot operate with a Number value.

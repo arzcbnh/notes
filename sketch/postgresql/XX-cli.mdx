@@ -1,0 +1,27 @@
+---
+title: Command-line interface
+---
+
+Shell commands often required to have a variable `PGPASSWORD` with the user password in the current environment, and may either use other environment variables or command-line flags for username, host address, and database. For example, when running a query:
+
+```
+$ PGPASSWORD=postgres psql -u postgres -h localhost -d blog -c "SELECT * FROM posts"
+    └ password variable         └ username   └ host     └ database
+```
+
+| Command             | Effect                                     |
+| ------------------- | ------------------------------------------ |
+| `createdb <name>`   | Create a new database.                     |
+| `dropdb <database>` | Delete a database.                         |
+| `psql <database>`   | Open an interactive shell on the database. |
+
+### SQL shell commands (meta-commands)
+
+| Command         | Effect                                      |
+| --------------- | ------------------------------------------- |
+| `\h`            | Display SQL **h**elp.                       |
+| `\?`            | Display help for shell commands.            |
+| `\q`            | **Q**uit.                                   |
+| `\i <filepath>` | **I**nput and run a script file.            |
+| `\c <database>` | **C**onnect to a new database.              |
+| `\d`            | **D**isplay tables in the current database. |

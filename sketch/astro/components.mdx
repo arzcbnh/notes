@@ -1,0 +1,31 @@
+---
+title: Components
+---
+
+Component `props` can be obtained from `Astro.props`:
+
+```js
+const { title } = Astro.props;
+```
+
+Children can be inserted in components with the `<slot />` element. Elements placed inside a pair of `<slot>` tags is used as placeholders in the absence of children. A slot can be transferred if it has both `name` and `slot` attributes.
+
+<DynamicColumns>
+```astro
+<!-- In the definition of Wrapper -->
+<div>
+    <slot name="title" />
+    <p>Global preface</p>
+    <slot />
+</div>
+```
+
+```astro
+<!-- Using the Wrapper component -->
+<Wrapper>
+    <h1 slot="title">Title</h1>
+    <p>Content</p>
+</Wrapper>
+```
+
+</DynamicColumns>

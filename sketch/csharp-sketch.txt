@@ -1,0 +1,46 @@
+CLI
+
+------------------------------
+
+CSPROJ
+
+------------------------------
+
+BASIC STRUCTURE
+
+using System; // import a namespace's contents into the current scope
+using static System.Math; // import methods from a static class into the current scope
+global using System.Threading; // import a namespace into the global scope
+
+// methods are contained by classes, which are contained by namespaces
+// namespaces may nest other namespaces, classes may nest other classes, and methods may nest other methods
+namespace SampleNamespace
+{
+    // namespaces may contain classes, interfaces, structs, enums, delegates, and other namespaces
+    class SampleClass
+    {
+        // classes may contain 
+
+
+        static int SampleMethod()
+        {
+            return 1;
+        }
+    }
+}
+
+------------------------------
+
+SPECIAL OPERATORS
+
+------------------------------
+
+SPECIAL FLOW CONTROL
+
+if (variable is Type i)
+
+foreach
+
+switch cases
+
+catch (Type err)

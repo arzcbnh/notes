@@ -1,0 +1,63 @@
+&amp; -> &
+&lt; -> <
+&gt; -> >
+
+SETUP
+git init | Set up the current folder as a git repository.
+git clone <url> | Create a copy of the repository locally.
+
+STAGING & COMMITING
+git status | Display information about the current working directory and all staged, unstaged, and untracked files.
+git add <path>... | Stage files.
+git commit | Create a commit from the current staged area. Launches core.editor to write a commit message. Use -a flag to add all tracked unstaged files before commiting.
+git commit -m <msg> | Write the message from the CLI, skipping the editor.
+
+STAGING & COMMITING
+git status | Display information about the current working directory and all staged, unstaged, and untracked files.
+git add <path>... | Stage files.
+git commit | Create a commit from the current staged area. Launches core.editor to write a commit message. Use -a flag to add all tracked unstaged files before commiting.
+git commit -m <msg> | Write the message from the CLI, skipping the editor.
+git reset <path>... | Unstage files.
+git reset <mode> <commit> | Change which commit the current branch is pointing to. <mode> may be --soft (keep working tree and stage all changes), --mixed (keep working tree but unstage all changes), or --hard (discards working tree).
+
+BRANCHES
+git branch --list | List branches that match the patterns. Defaults to wildcard.
+git branch <name>... | Create branches from current HEAD. Use -d flag for deleting.
+git branch (-c | -m) <oldbranch> <newbranch> | Copy/move an old branch to a new branch.
+git switch <branch> | Switch to a branch. Use -c flag to create branch before switching.
+git merge <branch> | Merge a branch into the current branch.
+
+HISTORY
+git log | Display the commit history of the current HEAD.
+git log --follow <file> | Display the history of a file, including renames.
+git log --all | Display all reachable commits from every branch and reachable reference.
+git log --graph --oneline | Draw a graphical representation of the history to the left of the output, displaying only the first line and abbreviated hash of every commit.
+git diff <path> | Display changes that can yet be staged.
+git diff --staged [<commit>] [<path>...] | Compare staged files to another commit. Defaults to current HEAD and all staged files.
+
+REMOTE
+git remote [-v] | Show a list of existing remotes. Use -v flag for verbose.
+git remote add <name> <url> | Add a remote named <name> for the repository at <url>.
+git push <remote> <branch> | Send local branch commits to remote repository. Use -u flag to set a remote tracking branch for the local branch that is being pushed.
+git pull | Fetch and merge commits from remote tracking branch.
+
+git rm
+git mv
+
+git rebase
+
+git clean
+
+git tag, -m
+git show
+
+HEAD,commit,relativity
+
+git stash with other commands
+
+
+git help [<command>|<guide>]
+    -g, --guides
+
+no mention: git revert | Make a commit to revert a previous commit
+glossary: index, staging area, bare, tracked vs staged, HEAD, working tree

@@ -1,0 +1,176 @@
+STYLE SYNTAX
+@rule argument
+
+selector {
+    property: value;
+    /* ... */
+}
+
+SELECTORS
+* | * {}
+tag | h1 {}
+class | .card {}
+id | #topbar {}
+
+* Combinators
+    * List | p, .banner {} | Selects elements that match any of the selectors.
+    * Class conjunction | div.card.dark {} | Selects elements that match a tag selector if present, and necessarily have all classes.
+    * Descendant | section p {} | Selects elements that match the right-hand selector and are a descendant of elements that match the left-hand selector.
+    * Child | div > img {} | Selects elements that match the right-hand selector and are a child of elements that match the left-hand selector.
+    * Next sibling | li + li {} | Selects elements that match the right-hand selector and are immediately preceded by an element that matches the left-hand selector.
+    * Subsequent sibling | p.abstract ~ p {} | Selects elements that match the right-hand selector and are preceded at any point by an element that matches the left-hand selector.
+
+* Pseudo-elements
+    * ::before
+    * ::after
+    * ::marker
+    * ::first-letter
+    * ::first-line
+    * ::selection
+
+* Pseudo-classes
+    * :focus
+    * :hover
+    * :active
+    * :link
+    * :visited
+    * :root
+    * :first-child
+    * :last-child
+    * :nth-child(expr)
+    * :every-child
+    * :valid
+    * :invalid
+
+* Attribute selectors
+    * [atribute]
+    * [atribute="value"]
+
+VALUES AND UNITS
+* Color
+* Angle
+* Number
+* Length
+    px
+    em
+    rem
+    vw and vh
+    fr
+    cqw, cqv
+* String
+* Image
+
+PROPERTIES
+* Text properties
+    * color | Text and decoration color. Sets the currentcolor value.
+    * letter-spacing | Sets the horizontal spacing between letters. Takes a length.
+    * text-align | Sets the horizontal alignment of the text to start, center, end, or justify.
+    * text-decoration | Shorthand for other text-decoration-* properties: line, style, and color.
+    * text-indent | Takes a length or a percentage.
+    * text-shadow | Adds a shadow to the text. Takes a color and many length values, for X and Y offset and blur radius.
+    * text-overflow | Sets how hidden overflow content is signaled to users. Values may be clip, ellipses, or a custom string.
+    * white-space | Complex property with many different values for handling white space.
+
+* Font properties
+    * font | Shorthand for many font-* properties, including the ones below.
+    * font-family | Comma separated list of fonts, names with white space must be written inside double quotes.
+    * font-size | Takes a length. 
+    * font-style | Values may be normal, italic, and oblique, the latter may be followed by an angle.
+    * font-weight | Takes a number between 1 and 1000.
+
+* Background properties
+    * background | Shorthand for many background-* properties, including the ones below.
+    * background-attachment | Sets whether a background's position is fixed within the viewport or scrolls.
+    * background-color | Takes and sets a color.
+    * background-image | Sets an image as the background. Takes a comma separated list of URLs.
+    * background-position | Takes keyword and length values.
+    * background-repeat | Sets how background images are repeated.
+    * background-size | Sets the image size in relation to the area of the elements, having options such as cover, stretch, etc.
+
+* Box properties
+    * width and height | Take a percentage or a length.
+    * margin | Shorthand for all margin-* properties that set a side margin. Takes one to four lengths, respectively a top, right, bottom, and left value. May be auto for centering.
+    * padding | Shorthand for all padding-* properties that set a side padding. Takes one to four lengths, respectively a top, right, bottom, and left value.
+    * border | Shorthand for other border-* properties: width, style, and color.
+    * border-radius | Rounds the corners of an element's border by a given length value.
+    * box-shadow | Adds a shadow effect around an element's frame. Takes an optional color, an optional inset keyword, and two to four length values, for X and Y offset, blur radius, and spread radius respectively. May add many shadow effects that are separated by commas.
+    * outline
+    * resize
+
+* Layout properties
+    * display | WRONG Sets an element's block and layout. Accepted values for block are block or inline, and layout is flex or grid.
+    * position
+    * box-sizing
+    * overflow | Sets the behavior of overflowing content. Values may be visible, hidden, clip, scroll, and auto.
+
+FLEXBOX PROPERTIES
+Properties for the parent
+    * flex | Shorthand for flex-grow, flex-shrink, and flex-basis. Sets those properties to all children. Takes up to 3 values, in many different syntaxes, with keywords such as auto and initial.
+    * flex-flow | Shorthand for flex-direction and flex-wrap. Takes a value for each, respectivelly.
+    * flex-direction | Sets the direction for the main-axis. May be row (default), row-reverse, column, column-reverse.
+    * flex-wrap | Sets how the items wrap. May be nowrap (default), wrap, and wrap-reverse.
+    * justify-content | Defines the alignment along the main-axis. Relevant values may be flex-start (default), flex-end, center, space-between, space-around, space-evenly.
+    * align-items | Defines the alignment of items along the cross-axis. Relevant values may be flex-start, flex-end, center, stretch, baseline.
+    * gap | Sets a gap between items. Takes a length.
+Properties for the children
+    * flex-grow | Defines the ability for an item to grow if necessary. Takes a number that serves as a scale factor.
+    * flex-shrink | Defines the ability for an item to shrink if necessary. Takes a number that serves as a scale factor.
+    * flex-basis | Defines the initial size of an item before the space of its container is distributed among other items. Takes a length or a keyword.
+
+GRID PROPERTIES
+Container properties
+    * grid | Shorthand for grid-auto-* and grid-template-* properties. There's the repeat function with minmax, auto-fit and auto-fill.
+    * grid-template | Shorthand for grid-template-* properties. Takes many values separated by a slash for rows and columns, respectively.
+    * grid-template-rows | Sets the height of each respective row. Takes a list of numbers that may be lengths or percentages.
+    * grid-template-columns | Sets the width of each respective row. Takes a list of numbers that may be lengths or percentages.
+    * grid-template-areas | Takes a list of strings, each representing a row. Each string should have a list of names defined in grid-area, of which the named item fills the cell. . may be used for empty cells.
+    * grid-auto-rows | Sets the height of new rows added automatically.
+    * grid-auto-columns | Sets the width of new columns added automatically.
+    * grid-auto-flow | Sets whether a new row or column should be added automatically. Default is row.
+    * gap | Shorthand that sets a value for both row-gap and column-gap.
+    * row-gap | Sets the horizontal gap.
+    * column-gap | Sets the vertical gap.
+Item properties
+    * grid-row, grid-column | Shorthands for grid-*-start and grid-*-end. Values must be separated by a slash.
+    * grid-row-start, grid-row-end | Position in which horizontal grid lines the item begins and ends.
+    * grid-column-start, grid-column-end | Position in which vertical grid lines the item begins and ends.
+    * grid-area | Shorthand for grid-row-start, grid-column-start, grid-row-end, and grid-column-end respectively. Values should be separated by a slash. However, it can also be used to give a name to an item, which is then used in grid-template-areas to set which cells this item encompasses.
+    * justify-self ITEM
+    * align-self ITEM
+    * place-self ITEM
+    * justify/align/place-items
+    * justify/align/place-content
+    span keyword, auto-fill with repeat and minmax
+
+
+SPECIFICITY
+1. ids
+2. class
+3. tag
+
+AT-RULES
+@import
+@font-face
+
+VARIABLES
+
+FUNCTIONS
+rgb
+hsl
+url
+min, clamp, max
+minmax
+calc
+var
+linear-gradient
+repeat
+
+fill (svg)
+cursor
+scroll-* and scrollbar-*
+transition
+backface-visibility
+perspective
+transform-style
+image-rendering
+@property

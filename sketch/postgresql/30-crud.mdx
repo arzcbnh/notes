@@ -1,0 +1,35 @@
+---
+title: CRUD operations
+---
+
+### Create
+
+```sql
+INSERT INTO <table> (column1, column2, ...) VALUES (value1, value2, ...), (value3, value4, ...);
+
+INSERT INTO weather (city, temperature, precipitation) VALUES
+    ('San Francisco', 46, 0.25, '1994-11-27');
+```
+
+### Read
+
+```sql
+SELECT * FROM <table>;
+SELECT <column1>, <column2>, ... FROM <table>;
+SELECT * FROM <table> WHERE <boolean>;
+
+SELECT city, temperature, precipitation, date FROM weather;
+SELECT city, date FROM weather WHERE temperature < 40;
+```
+
+### Update
+
+```sql
+UPDATE <table> SET column = value WHERE <boolean>;
+```
+
+### Delete
+
+```sql
+DELETE FROM <table> WHERE <boolean>;
+```

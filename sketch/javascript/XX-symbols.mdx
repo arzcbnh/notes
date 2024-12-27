@@ -1,0 +1,38 @@
+---
+title: Well-known and custom symbols
+---
+
+Using symbols, it is possible to create complex interfaces for object and non-colliding prototype extensions. Some symbols are already used by JavaScript for custom behavior, and they're called **well-known symbols**. Those symbols are accessible as static properties of the `Symbol` constructor.
+
+A list of well-known symbols can be found at [the page for Symbol on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#static_properties).
+
+### Extending prototypes
+
+Sometimes, there'd be value in implementing a method for a type, but extending prototypes are a bad practice because they lead to collisions and unmaintainable code. A method can be safely implemented with the help of symbols.
+
+```js
+const newMethod = Symbol();
+
+String.prototype[newMethod] = function () {
+    // ...
+};
+
+const str = "Some text";
+str[newMethod]();
+```
+
+### `Symbol.iterator`
+
+The `Symbol.iterator` is checked for in many constructs that implement the iterator protocol, such as the spread operator and `for` loops. Its expected to hold an iterator function for the object.
+
+```js
+const iterable1 = {};
+
+iterable1[Symbol.iterator] = function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+};
+
+console.log(...iterable1); // -> 1 2 3
+```

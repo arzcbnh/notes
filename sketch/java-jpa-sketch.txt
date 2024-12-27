@@ -1,0 +1,29 @@
+@Entity
+@Table(name = "asdasd")
+@Id
+@GeneratedValue(strategy = GenerationType.something)
+@Column(length = 150, nullable = false)
+
+@NotBlank
+@NotEmpty
+@Past
+@Email
+@Size
+@Valid
+
+extends JpaRepository<EntityType, long>
+
+@ManyToOne
+@JoinColumn(name = "column_name")
+
+@ManyToMany
+@JoinTable(
+    name = "table1_table2",
+    joinColumns = @JoinColumn(name = "column1_name"),
+    inverseJoinColumns = @JoinColumn(name = "column2_name")
+)
+
+@JsonIgnore
+
+@Query(nativeQuery = true, value = "")
+@Param
