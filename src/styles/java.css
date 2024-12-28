@@ -9,7 +9,7 @@
 :root {
     font-family: "DejaVu Sans";
 
-    --transition-time: 0.4s;
+    --transition-time: 0.2s;
 
     /* Colors */
     --lightblue: #9691d3;
@@ -18,14 +18,14 @@
     --darkgray: #201d38;
 
     /* Gradients */
+    --knob-rim-gradient: linear-gradient(135deg, var(--darkblue) 30%, var(--lightblue) 90%);
+    --brushed-gradient: conic-gradient(from 45deg, white, var(--darkgray), white, var(--lightgray), white);
     --convex-gradient: radial-gradient(ellipse 60% 200% at 20% 210%, var(--darkblue), transparent),
         radial-gradient(ellipse 60% 200% at 80% -110%, var(--lightblue), transparent),
         linear-gradient(to bottom right, var(--lightblue), var(--darkblue) 70%);
     --concave-gradient: radial-gradient(ellipse 60% 200% at 20% 210%, var(--lightblue), transparent),
         radial-gradient(ellipse 60% 200% at 80% -110%, var(--darkblue), transparent),
         linear-gradient(to top left, var(--lightblue), var(--darkblue) 70%);
-    --brushed-gradient: conic-gradient(from 45deg, white, var(--darkgray), white, var(--lightgray), white);
-    --knob-hole-gradient: linear-gradient(135deg, var(--darkblue) 30%, var(--lightblue) 90%);
 }
 
 body {
@@ -46,7 +46,7 @@ body {
         margin-right: 0.5em;
         background: currentColor;
         mask: url("assets/misc/java-currentColor.svg") no-repeat 50% 50%;
-        mask-size: cover;
+        mask-size: contain;
     }
 }
 
@@ -68,7 +68,9 @@ body {
 
 .accordion_head {
     background: var(--convex-gradient);
-    gap: 0.5rem;
+    border-radius: 1rem 1rem 0 0;
+    border: solid 1px black;
+    gap: 1rem;
 
     /* This pseudo-element is used to centralize the title */
     &::before {
@@ -130,7 +132,7 @@ body {
     }
 
     .accordion_icon {
-        background-image: var(--brushed-gradient), var(--knob-hole-gradient);
+        background-image: var(--brushed-gradient), var(--knob-rim-gradient);
         border-color: transparent;
         color: black;
 
