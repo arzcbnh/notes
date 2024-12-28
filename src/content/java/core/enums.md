@@ -63,8 +63,8 @@ Fruit[] allFruit = Fruit.values()
 for (var fruit : allFruit) { /* ... */ }
 
 // 'valueOf()' returns a constant if it matches the passed string
-Fruit apple = Fruit.valueOf("Apple");    // -> Fruit.Apple
-Fruit banana = Fruit.valueOf("Banana");  // -> EnumConstantNotPresentException
+assert Fruit.valueOf("Apple") == Fruit.Apple;
+assert doesThrow(EnumConstantNotPresentException.class, () -> Fruit.valueOf("Banana"));
 ```
 
 #### Switch statements

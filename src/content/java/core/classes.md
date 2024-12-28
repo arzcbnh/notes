@@ -1,5 +1,5 @@
 ---
-title: Classes basics
+title: Class basics
 category: core
 position: 30
 ---
@@ -14,7 +14,7 @@ class Rectangle {
   int width;
   int height;
 
-  // Constructors instantiate all instance members of a class
+  // Constructors initialize all instance members of a class
   Rectangle(int width, int height) {
     this.width = width;
     this.height = height;
@@ -87,6 +87,10 @@ assert example.getIndividual() == 2;
 // Filename: Example.java
 
 public class Example {
-  // ...
+  // Members can also have different accessors
+  private long length;
+  protected long getLength() {
+    return length;
+  }
 }
 ```

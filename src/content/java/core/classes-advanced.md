@@ -1,5 +1,5 @@
 ---
-title: Classes advanceds
+title: Class advanceds
 category: core
 position: 40
 ---
