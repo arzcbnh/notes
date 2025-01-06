@@ -1,0 +1,23 @@
+---
+interface Props {
+    skip?: string;
+}
+
+const { skip } = Astro.props;
+const notes = ["Java", "TypeScript"].filter(x => x.toLowerCase() !== skip);
+---
+
+<ul class="notelist">
+    {
+        notes.map(note => {
+            const lowercase = note.toLowerCase();
+            return (
+                <li class={"notelist_" + lowercase}>
+                    <a class="notelist_anchor" href={lowercase}>
+                        {note}
+                    </a>
+                </li>
+            );
+        })
+    }
+</ul>

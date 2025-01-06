@@ -6,12 +6,11 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "format": "prettier . --write | grep -v 'unchanged'",
+        "format": "prettier . !**/reset.css !sketch --write | grep -v 'unchanged'",
         "lint": "eslint ."
     },
     "dependencies": {
-        "@astrojs/mdx": "^3.1.7",
-        "astro": "^4.15.12"
+        "astro": "^5.1.2"
     },
     "devDependencies": {
         "@eslint/js": "^9.12.0",

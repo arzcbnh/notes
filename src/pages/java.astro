@@ -1,13 +1,47 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 
 import BaseLayout from "layouts/BaseLayout.astro";
-import Sheet from "components/Sheet.astro";
+import Accordion from "../components/Accordion.astro";
 import "styles/java.css";
 
 const entries = await getCollection("java");
+const categories = await getEntry("categories", "java");
+
+if (categories == null) {
+    throw new Error("Categories for Java notes not found");
+}
+
+const processed = categories.data.map(async category => {
+    const processed = entries
+        .filter(entry => entry.data.category === category.slug)
+        .sort((a, b) => a.data.position - b.data.position)
+        .map(async entry => ({ title: entry.data.title, render: await render(entry) }));
+
+    const awaited = await Promise.all(processed);
+
+    return { title: category.title, entries: awaited };
+});
+
+const awaited = await Promise.all(processed);
 ---
 
 <BaseLayout title="Java">
-    <Sheet style="java" entries={entries} />
+    <div class="wallpaper">Java</div>
+    <main class="content">
+        {
+            awaited.map(category => (
+                <div class="category">
+                    {category.title && <h2 class="category_title">{category.title}</h2>}
+                    <div class="category_accordions">
+                        {category.entries.map(entry => (
+                            <Accordion categoryHasTitle={!!category.title} icon="java" title={entry.title}>
+                                <entry.render.Content />
+                            </Accordion>
+                        ))}
+                    </div>
+                </div>
+            ))
+        }
+    </main>
 </BaseLayout>

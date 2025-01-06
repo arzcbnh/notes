@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry, ContentEntryMap } from "astro:content";
-import Category from "./Category.astro";
+import Category from "./_Category.astro";
 
 interface Props {
     entries: CollectionEntry<keyof ContentEntryMap>[];
@@ -18,7 +18,7 @@ const misc = filter(entries, "misc");
 ---
 
 <div class="sheet">
-    {core.length > 0 ? <Category style={style} entries={core} title="" /> : null}
-    {stdlib.length > 0 ? <Category style={style} entries={stdlib} title="Standard Library" /> : null}
-    {misc.length > 0 ? <Category style={style} entries={misc} title="Miscellaneous" /> : null}
+    {core.length > 0 ? <Category accordionIcon={style} accordionData={core} title="" /> : null}
+    {stdlib.length > 0 ? <Category accordionIcon={style} accordionData={stdlib} title="Standard Library" /> : null}
+    {misc.length > 0 ? <Category accordionIcon={style} accordionData={misc} title="Miscellaneous" /> : null}
 </div>

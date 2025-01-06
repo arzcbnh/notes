@@ -1,15 +1,14 @@
 ---
-import { getCollections } from "scripts";
-
 import BaseLayout from "layouts/BaseLayout.astro";
-import SheetAnchor from "components/SheetAnchor.astro";
-import "styles/default.css";
+// import SheetAnchor from "components/SheetAnchor.astro";
+// import NoteList from "../components/NoteList.astro";
+// import "styles/default.css";
 
 const collections = ["java", "typescript"];
 ---
 
-<BaseLayout pageTitle="Matt's Cheatsheets and Hacks">
-    <div class="anchors">
-        {collections.map(name => <SheetAnchor name={name} />)}
-    </div>
+<BaseLayout title="Matt's Notes">
+    <!--<div class="anchors">-->
+    <!--    {collections.map(name => <SheetAnchor name={name} />)}-->
+    <!--</div>-->
 </BaseLayout>

@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 
-import BaseLayout from "layouts/BaseLayout.astro";
-import Sheet from "components/Sheet.astro";
-import "styles/typescript.css";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import Sheet from "src/components/Sheet.astro";
+import "src/styles/typescript.css";
 
 const entries = await getCollection("typescript");
 ---

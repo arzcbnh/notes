@@ -7,9 +7,7 @@
 }
 
 :root {
-    font-family: "DejaVu Sans";
-
-    --transition-time: 0.2s;
+    font-family: "DejaVu Sans", sans-serif;
 
     /* Colors */
     --lightblue: #9691d3;
@@ -19,7 +17,7 @@
 
     /* Gradients */
     --knob-rim-gradient: linear-gradient(135deg, var(--darkblue) 30%, var(--lightblue) 90%);
-    --brushed-gradient: conic-gradient(from 45deg, white, var(--darkgray), white, var(--lightgray), white);
+    --knob-gradient: conic-gradient(from 45deg, white, var(--darkgray), white, var(--lightgray), white);
     --convex-gradient: radial-gradient(ellipse 60% 200% at 20% 210%, var(--darkblue), transparent),
         radial-gradient(ellipse 60% 200% at 80% -110%, var(--lightblue), transparent),
         linear-gradient(to bottom right, var(--lightblue), var(--darkblue) 70%);
@@ -32,45 +30,84 @@ body {
     background: #57809e;
 }
 
-.topBar {
-    padding: 0.5rem 1rem 0 1rem;
-    justify-content: flex-start;
-    font-weight: lighter;
+.wallpaper {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0.25rem;
+
     color: #7aa2bf;
-    user-select: none;
+    font-size: 3rem;
+
+    z-index: -1;
+    transform-origin: top right;
+    transform: translateX(-100%) rotate(-90deg);
+    position: fixed;
+    left: 0;
+    top: 0;
 
     &::before {
         content: "";
-        width: 3em;
-        height: 3em;
-        margin-right: 0.5em;
+        height: 2em;
+        display: block;
+        aspect-ratio: 1.8 / 2;
+        margin-right: 0.2em;
         background: currentColor;
-        mask: url("assets/misc/java-currentColor.svg") no-repeat 50% 50%;
+        mask: url("assets/logos/java.svg") no-repeat 50% 50%;
         mask-size: contain;
     }
 }
 
-.bottomBar {
-    padding: 0.5em;
-    background: #e6e6e6;
-    color: black;
-    font-weight: lighter;
+.content {
+    padding: 1rem 1rem 25vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.category {
+    width: min(100%, 1000px);
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.category_title {
+    color: #eee;
+    font-size: 1.4rem;
+}
+
+.category_accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .accordion {
     border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
 }
 
 .accordion,
 .accordion * {
-    transition: height var(--transition-time) ease-in-out;
+    transition: height 0.2s ease-in-out;
 }
 
 .accordion_head {
+    padding: 0.25rem 1rem;
     background: var(--convex-gradient);
     border-radius: 1rem 1rem 0 0;
     border: solid 1px black;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+
+    user-select: none;
 
     /* This pseudo-element is used to centralize the title */
     &::before {
@@ -91,13 +128,14 @@ body {
     color: #ddd;
     text-align: center;
     font-weight: normal;
+    font-size: 1.25rem;
+    text-overflow: ellipsis;
 
     flex: 1;
 }
 
 .accordion_icon {
     color: #ada7d7;
-
     width: 1.7rem;
     padding: 0.3rem;
     border: solid 2px currentColor;
@@ -106,13 +144,16 @@ body {
     background: transparent;
     background-origin: border-box;
     background-clip: padding-box, border-box;
+
+    svg {
+        fill: currentColor;
+    }
 }
 
 .accordion_body {
     background: white;
-    border-image: url("assets/misc/solaris-window-border.png") 21;
-    border-image-width: 0 21px 21px 21px;
-    border-image-repeat: repeat;
+    border-width: 0 21px 21px 21px;
+    border-image: url("assets/misc/solaris-window-border.png") 21 / 0 21px 21px repeat;
 }
 
 .accordion_bodyWrapper {
@@ -132,7 +173,7 @@ body {
     }
 
     .accordion_icon {
-        background-image: var(--brushed-gradient), var(--knob-rim-gradient);
+        background-image: var(--knob-gradient), var(--knob-rim-gradient);
         border-color: transparent;
         color: black;
 

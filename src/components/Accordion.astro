@@ -1,20 +1,20 @@
 ---
 interface Props {
-    style: string;
+    categoryHasTitle: boolean;
     title: string;
-    isCore: boolean;
+    icon: string;
 }
 
-const { style, title, isCore } = Astro.props;
+const { icon, title, categoryHasTitle } = Astro.props;
 ---
 
 <div class="accordion">
     <div class="accordion_head">
         <!-- Preserve heading hierarchy, since the "core" category doesn't have a title -->
-        {isCore ? <h2 class="accordion_title">{title}</h2> : <h3 class="accordion_title">{title}</h3>}
+        {categoryHasTitle ? <h3 class="accordion_title">{title}</h3> : <h2 class="accordion_title">{title}</h2>}
         <div class="accordion_icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px">
-                <use xlink:href={"assets/dropdowns.svg#" + style}></use>
+                <use xlink:href={"assets/dropdowns.svg#" + icon}></use>
             </svg>
         </div>
     </div>
@@ -30,25 +30,17 @@ const { style, title, isCore } = Astro.props;
     function setToggleListener(accordion: Element) {
         const wrapper = accordion.querySelector(".accordion_bodyWrapper") as HTMLElement;
         const head = accordion.querySelector(".accordion_head") as HTMLElement;
-        const body = wrapper.querySelector(".accordion_body") as HTMLElement;
-
         let isOpen = false;
-        const hideBody = () => {
-            // Check if is open because clicking too quickly may leave an empty body
-            if (!isOpen) body.style.display = "none";
-        };
 
         head.addEventListener("click", () => {
-            if (isOpen) {
-                wrapper.addEventListener("transitionend", hideBody, { once: true });
-                wrapper.style.height = "0";
-            } else {
-                body.style.display = "block";
-                wrapper.style.height = wrapper.scrollHeight + "px";
-            }
-
             accordion.classList.toggle("-toggled");
             isOpen = !isOpen;
+
+            if (isOpen) {
+                wrapper.style.height = wrapper.scrollHeight + "px";
+            } else {
+                wrapper.style.height = "0";
+            }
         });
     }
 

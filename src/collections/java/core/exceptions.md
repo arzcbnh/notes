@@ -4,7 +4,7 @@ category: core
 position: 70
 ---
 
-- All exception types are subclasses of `Throwable`.
+-   All exception types are subclasses of `Throwable`.
 
 ```java
 throw new ExceptionType();
@@ -27,7 +27,7 @@ throw new Exception("message", causeException);
 
 #### Try-catch statements
 
-- A try statement must be followed by either a catch or a final statement. A try-with-resources statement doesn't need either because it already has an implicit final statement.
+-   A try statement must be followed by either a catch or a final statement. A try-with-resources statement doesn't need either because it already has an implicit final statement.
 
 ```java
 try {

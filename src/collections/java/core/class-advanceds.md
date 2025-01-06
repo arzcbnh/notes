@@ -63,7 +63,10 @@ interface Stinky {
 }
 
 interface Alive {
-  void breathe();
+  // Interfaces can have default methods that don't require implementation
+  default void breathe() {
+    GlobalContext.air.consume();
+  }
 }
 
 // Interfaces can extend multiple other interfaces
@@ -82,7 +85,7 @@ class Dog implements Animal, Stinky {
 Animal creature = new Dog();
 ```
 
-#### Initiliazer blocks
+#### Initializer blocks
 
 ```java
 class Example {

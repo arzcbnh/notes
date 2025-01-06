@@ -1,0 +1,34 @@
+---
+import type { ContentEntryMap } from "astro:content";
+import type { RenderResult } from "astro:content";
+import { render } from "astro:content";
+import Accordion from "./Accordion.astro";
+// import {AstroComponentFactory} from "astro/dist/runtime/server";
+// import Accordion from "./Accordion.astro";
+
+interface Props {
+    accordionData: { title: string; render: Promise<RenderResult> }[];
+    accordionIcon: string;
+    title: string;
+}
+
+const { title, accordionData, accordionIcon } = Astro.props;
+const hasTitle = Boolean(title);
+---
+
+<div class="category">
+    {hasTitle && <h2 class="category_title">{title}</h2>}
+    <div class="category_entries">
+        {
+            accordionData.map(async entry => {
+                const { Content } = await entry.render;
+
+                return (
+                    <Accordion title={entry.title} icon={accordionIcon} categoryHasTitle={hasTitle}>
+                        <slot />
+                    </Accordion>
+                );
+            })
+        }
+    </div>
+</div>
