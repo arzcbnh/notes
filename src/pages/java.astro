@@ -1,47 +1,78 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
-
-import BaseLayout from "layouts/BaseLayout.astro";
-import Accordion from "../components/Accordion.astro";
+import { getCollection } from "astro:content";
 import "styles/java.css";
 
-const entries = await getCollection("java");
-const categories = await getEntry("categories", "java");
+import BaseLayout from "layouts/BaseLayout.astro";
+import NoteList from "../components/NoteList.astro";
+import Category from "../components/Category.astro";
 
-if (categories == null) {
-    throw new Error("Categories for Java notes not found");
+const collection = await getCollection("java");
+
+const entries = {
+    core: collection.filter(entry => entry.data.category === "core"),
+    misc: collection.filter(entry => entry.data.category === "misc"),
+    stdlib: collection.filter(entry => entry.data.category === "stdlib"),
+};
+
+for (const arr of Object.values(entries)) {
+    arr.sort((a, b) => a.data.position - b.data.position);
 }
-
-const processed = categories.data.map(async category => {
-    const processed = entries
-        .filter(entry => entry.data.category === category.slug)
-        .sort((a, b) => a.data.position - b.data.position)
-        .map(async entry => ({ title: entry.data.title, render: await render(entry) }));
-
-    const awaited = await Promise.all(processed);
-
-    return { title: category.title, entries: awaited };
-});
-
-const awaited = await Promise.all(processed);
 ---
 
 <BaseLayout title="Java">
-    <div class="wallpaper">Java</div>
+    <div class="wallpaper">
+        <div class="wallpaper_logo">
+            <div class="wallpaper_icon"></div>
+            <div class="wallpaper_text">Java</div>
+        </div>
+        <img class="wallpaper_duke" src="assets/misc/duke-peace.svg" alt="" />
+    </div>
     <main class="content">
-        {
-            awaited.map(category => (
-                <div class="category">
-                    {category.title && <h2 class="category_title">{category.title}</h2>}
-                    <div class="category_accordions">
-                        {category.entries.map(entry => (
-                            <Accordion categoryHasTitle={!!category.title} icon="java" title={entry.title}>
-                                <entry.render.Content />
-                            </Accordion>
-                        ))}
-                    </div>
-                </div>
-            ))
-        }
+        <Category entries={entries.core} title="" icon="java" />
+        <Category entries={entries.stdlib} title="Standard Library" icon="java" />
+        <Category entries={entries.misc} title="Miscellaneous" icon="java" />
     </main>
+    <div class="system">
+        <div class="menu -hidden">
+            <NoteList />
+        </div>
+        <div class="taskbar">
+            <div class="taskbar_start" role="button">
+                <div>Launcher</div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px">
+                    <use xlink:href={"assets/dropdowns.svg#default"}></use>
+                </svg>
+            </div>
+            <div class="taskbar_time"></div>
+            <div class="taskbar_task -selected">
+                <img class="taskbar_icon" src="assets/misc/icons8-notepad-48.png" alt="" />
+                Notes
+            </div>
+            <a class="taskbar_task" href="https://github.com/arzcbnh/notes">
+                <img class="taskbar_icon" src="assets/logos/github-dark.svg" alt="" />
+                GitHub
+            </a>
+        </div>
+    </div>
 </BaseLayout>
+
+<script>
+    (function setupStartButton() {
+        const taskbarButton = document.querySelector(".taskbar_start")!;
+        const menu = document.querySelector(".menu")!;
+        taskbarButton.addEventListener("click", () => menu.classList.toggle("-hidden"));
+    })();
+
+    (function setupClock() {
+        const taskbarTime = document.querySelector(".taskbar_time")!;
+        const setTime = () => {
+            const date = new Date().toString();
+            const day = date.slice(0, 10);
+            const time = date.slice(16, 21);
+            taskbarTime.textContent = `${day}, ${time}`;
+        }
+
+        setTime();
+        setInterval(setTime, 30000);
+    })();
+</script>

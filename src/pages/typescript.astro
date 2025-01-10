@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from "astro:content";
+import "styles/typescript.css";
+
+import BaseLayout from "layouts/BaseLayout.astro";
+import Accordion from "../components/Accordion.astro";
+
+const entries = await getCollection("typescript")
+    .then(entries => entries.sort((a, b) => a.data.position - b.data.position))
+    .then(entries => entries.map(async entry => ({ title: entry.data.title, render: await render(entry) })))
+    .then(entries => Promise.all(entries));
+---
+
+<BaseLayout title="Java">
+    <main class="content">
+        {
+            entries.map(entry => (
+                <Accordion categoryHasTitle={false} icon="typescript" title={entry.title}>
+                    <entry.render.Content />
+                </Accordion>
+            ))
+        }
+    </main>
+</BaseLayout>

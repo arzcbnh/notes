@@ -4,14 +4,15 @@ category: core
 position: 100
 ---
 
-```java
-// (arg1, arg2, ...) -> expression
+-   Lambdas can't have their type inferred.
 
-// Lambdas can't have their type inferred
+```java
+// arg -> expression
+// (arg1, arg2, ...) -> { body }
+
 IntBinaryOperator sum = (a, b) -> a + b;
 assert sum.applyAsInt(3, 4) == 7;
 
-// Lambdas can have statements
 List<Integer> ages = persons.map(p -> {
     return p.age;
 })

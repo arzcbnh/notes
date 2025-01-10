@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import { render } from "astro:content";
+import Accordion from "./Accordion.astro";
+
+interface Props {
+    entries: (CollectionEntry<CollectionKey> & { data: { title: string } })[];
+    title: string;
+    icon: string;
+}
+
+const { title, entries, icon } = Astro.props;
+const hasTitle = Boolean(title);
+---
+
+<div class="category">
+    {hasTitle && <h2 class="category_title">{title}</h2>}
+    <div class="category_entries">
+        {
+            entries.map(async entry => {
+                const { Content } = await render(entry);
+
+                return (
+                    <Accordion title={entry.data.title} icon={icon} categoryHasTitle={hasTitle}>
+                        <Content />
+                    </Accordion>
+                );
+            })
+        }
+    </div>
+</div>

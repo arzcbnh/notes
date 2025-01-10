@@ -26,6 +26,12 @@ const { icon, title, categoryHasTitle } = Astro.props;
     </div>
 </div>
 
+<style>
+    .accordion_bodyWrapper {
+        height: 0;
+    }
+</style>
+
 <script>
     function setToggleListener(accordion: Element) {
         const wrapper = accordion.querySelector(".accordion_bodyWrapper") as HTMLElement;
